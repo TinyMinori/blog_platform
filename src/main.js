@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 const favicon = {
   type: "image/x-icon",
   rel: "shortcut icon",
-  href: "http://www.stackoverflow.com/favicon.ico"
+  href: "./static/favicon.ico"
 }
 
 new Vue({

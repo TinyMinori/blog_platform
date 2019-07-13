@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      default_layout: "default"
+      default_layout: "empty"
     }
   },
   computed: {

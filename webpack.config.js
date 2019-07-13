@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const VueLoaderPlugin = require("vue-loader/lib/plugin")
 const webpack = require("webpack")
 const path = require("path")
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 
 module.exports = {
   entry: "./src/main.js",
@@ -12,7 +13,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src")
+      "@": path.resolve(__dirname, "src"),
+      vue$: "vue/dist/vue.esm.js"
     }
   },
   module: {
@@ -47,11 +49,20 @@ module.exports = {
     ]
   },
   devServer: {
-    hot: true
+    hot: true,
+    historyApiFallback: true
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i
+      })
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.html",
+      chunksSortMode: "dependency"
     }),
     new MiniCssExtractPlugin({
       filename: "style.css"

@@ -2,6 +2,7 @@ import Vue from "vue"
 import Router from "vue-router"
 
 import Gallery from "@/pages/Gallery.vue"
+import NotFound from "@/pages/404NotFound.vue"
 
 Vue.use(Router)
 
@@ -11,7 +12,15 @@ export default new Router({
     {
       path: "/",
       name: "Gallery",
-      component: Gallery
+      component: Gallery,
+      meta: {
+        layout: "default"
+      }
+    },
+    {
+      path: "*",
+      name: "404NotFound",
+      component: NotFound
     }
   ]
 })

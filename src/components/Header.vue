@@ -3,11 +3,8 @@
     <div class="navbar is-spaced">
       <div class="container">
         <div class="navbar-brand">
-          <span class="navbar-item is-hidden-touch">
-            <h1 class="title is-1">{{ title }}</h1>
-          </span>
-          <span class="navbar-item is-hidden-desktop">
-            <h1 class="title is-3">{{ title }}</h1>
+          <span class="navbar-item">
+            <h1 class="title">{{ title }}</h1>
           </span>
           <a
             class="navbar-item is-hidden-desktop"
@@ -15,14 +12,14 @@
             href="https://www.instagram.com/_minorikirakira"
           >
             <span class="icon">
-              <i class="fab fa-lg fa-instagram"></i>
+              <i class="fab fa-instagram fa-2x"></i>
             </span>
           </a>
         </div>
         <div id="navbarMenuList" class="navbar-menu">
           <div class="navbar-end">
             <a
-              class="navbar-item is-hidden-touch"
+              class="navbar-item"
               target="_blank"
               href="https://www.instagram.com/_minorikirakira"
             >

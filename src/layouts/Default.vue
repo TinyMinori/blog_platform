@@ -1,5 +1,5 @@
 <template>
-  <section class="hero background is-fullheight">
+  <section class="hero is-fullheight">
     <Header />
     <div class="hero-body">
       <slot />

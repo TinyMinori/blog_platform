@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <loader :loading="true" :v-center="true" :h-center="true" />
+    <loader
+      :loading="true"
+      :v-center="true"
+      :h-center="true"
+      :play-backward="true"
+    />
   </div>
 </template>
 

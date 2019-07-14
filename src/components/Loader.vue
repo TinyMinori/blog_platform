@@ -1,7 +1,11 @@
 <template>
   <div
     class="element is-loading"
-    :class="{ 'is-vcentered': vCenter, 'is-centered': hCenter }"
+    :class="{
+      'is-vcentered': vCenter,
+      'is-centered': hCenter,
+      'is-playing-backward': playBackward
+    }"
   ></div>
 </template>
 <script>
@@ -16,6 +20,10 @@ export default {
       default: false
     },
     hCenter: {
+      type: Boolean,
+      default: false
+    },
+    playBackward: {
       type: Boolean,
       default: false
     }
@@ -38,6 +46,10 @@ export default {
     width: 5em;
     height: 5em;
     border-width: 0.25em;
+    &.is-playing-backward {
+      animation-direction: alternate;
+      animation-timing-function: ease;
+    }
   }
   &.is-centered {
     left: calc(50% - 2.5em);

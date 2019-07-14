@@ -34,6 +34,28 @@ $divider-color: $brown;
 $divider-background-color: $brown;
 $divider-thickness: .1rem;
 
+// Create custom Scrollbar
+.scroll-bar {
+    overflow: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: $brown $beige-light;
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+        background-color: $beige-light;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $brown;
+    }
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px $beige-light;
+        -webkit-box-shadow: inset 0 0 6px $beige-light;
+        background-color: $beige-lighter;
+    }
+}
+
 // Import only what you need from Bulma
 @import "~bulma";
 @import "~bulma-divider";

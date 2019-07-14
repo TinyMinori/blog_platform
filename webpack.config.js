@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const VueLoaderPlugin = require("vue-loader/lib/plugin")
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 const webpack = require("webpack")
 const path = require("path")
 
@@ -15,7 +15,7 @@ module.exports = {
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "vue$": "vue/dist/vue.esm.js"
+      vue$: "vue/dist/vue.esm.js"
     }
   },
   module: {
@@ -62,11 +62,11 @@ module.exports = {
   },
   node: {
     setImmediate: false,
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty'
+    dgram: "empty",
+    fs: "empty",
+    net: "empty",
+    tls: "empty",
+    child_process: "empty"
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -80,9 +80,16 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, 'static'),
-        to: '.',
-        ignore: ['.*']
+        from: path.resolve(__dirname, "static/root"),
+        to: ".",
+        ignore: [".*"]
+      }
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, "static"),
+        to: "static",
+        ignore: [".*", "root/*"]
       }
     ])
   ]

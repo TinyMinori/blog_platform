@@ -18,12 +18,16 @@ new Vue({
   router,
   render: h => h(App),
   created() {
-    var link = document.querySelector("link[rel='icon']")
-    link.type = favicon.type
-    link.rel = favicon.rel
-    link.href = favicon.href
-    document.head || (document.head = document.getElementsByTagName("head")[0])
-    document.head.appendChild(link)
+    if (process.env.NODE_ENV === "development") {
+      console.log("dev")
+      var link = document.querySelector("link[rel='shortcut icon']")
+      link.type = favicon.type
+      link.rel = favicon.rel
+      link.href = favicon.href
+      document.head ||
+        (document.head = document.getElementsByTagName("head")[0])
+      document.head.appendChild(link)
+    }
     document.title = this.title
   }
 }).$mount("#app")

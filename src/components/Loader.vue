@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="loading"
     class="element is-loading"
     :class="{
       'is-vcentered': vCenter,

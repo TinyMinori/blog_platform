@@ -19,7 +19,6 @@ new Vue({
   render: h => h(App),
   created() {
     if (process.env.NODE_ENV === "development") {
-      console.log("dev")
       var link = document.querySelector("link[rel='shortcut icon']")
       link.type = favicon.type
       link.rel = favicon.rel

@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-head">
+  <div class="hero-head has-background-white">
     <div class="navbar is-spaced">
       <div class="container">
         <div class="navbar-brand">

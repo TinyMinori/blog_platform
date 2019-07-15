@@ -1,20 +1,22 @@
 <template>
-  <div class="hero-foot">
-    <div class="container has-text-centered">
-      <span class="is-6">
-        Made with
-        <span @mousedown="onClickHeart"
-          ><i class="fas fa-heart heart"></i
-        ></span>
-        by
-        <a
-          href="https://github.com/Mynori"
-          target="_blank"
-          class="is-text is-italic"
-        >
-          Mynori</a
-        >
-      </span>
+  <div class="hero-foot has-background-white">
+    <div class="container">
+      <div class="has-text-centered">
+        <span class="subtitle is-6">
+          Made with
+          <span @mousedown="onClickHeart"
+            ><i class="fas fa-heart heart"></i
+          ></span>
+          by
+          <a
+            href="https://github.com/Mynori"
+            target="_blank"
+            class="is-text is-italic"
+          >
+            Mynori</a
+          >
+        </span>
+      </div>
     </div>
   </div>
 </template>

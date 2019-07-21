@@ -56,7 +56,7 @@ export default {
   methods: {
     sendForm() {
       if (!this.username || !this.password) return
-      alert("aie")
+      alert("Logged In")
     }
   }
 }

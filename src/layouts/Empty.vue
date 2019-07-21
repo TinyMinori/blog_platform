@@ -1,6 +1,8 @@
 <template>
-  <section class="section">
-    <slot></slot>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <slot />
+    </div>
   </section>
 </template>
 <script></script>

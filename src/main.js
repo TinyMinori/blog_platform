@@ -1,10 +1,11 @@
 import Vue from "vue"
 import App from "@/App.vue"
 import router from "@/router.js"
+import strings from "@/strings.js"
 import "@/layouts/index.js"
 import "@/style.scss"
 
-Vue.prototype.title = "Let Me Travel"
+Vue.prototype.$s = strings
 
 Vue.config.productionTip = false
 
@@ -27,6 +28,6 @@ new Vue({
         (document.head = document.getElementsByTagName("head")[0])
       document.head.appendChild(link)
     }
-    document.title = this.title
+    document.title = this.$s.title
   }
 }).$mount("#app")

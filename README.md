@@ -1,5 +1,5 @@
 # Plateform
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2c39c6af-fe7a-499c-8657-ced0562c37fa/deploy-status)](https://app.netlify.com/sites/zozo-31/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2c39c6af-fe7a-499c-8657-ced0562c37fa/deploy-status)](https://app.netlify.com/sites/letmetravel/deploys)
 
 > A blog for my travel to Canada
 > This is the platform used to show the pictures of my travel

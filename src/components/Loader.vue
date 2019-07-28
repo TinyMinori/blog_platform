@@ -14,7 +14,7 @@ export default {
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: true
     },
     vCenter: {
       type: Boolean,

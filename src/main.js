@@ -1,13 +1,27 @@
 import Vue from "vue"
 import App from "@/App.vue"
+
 import router from "@/router.js"
 import strings from "@/strings.js"
+import VueResource from "vue-resource"
+import Cookies from "cookies-js"
+
 import "@/layouts/index.js"
 import "@/style.scss"
 
 Vue.prototype.$s = strings
+Vue.use(VueResource)
+
+if (!process.env.API_URL) process.env.API_URL = "http://localhost:3000"
+
+Vue.http.options.emulateJSON = true
+Vue.http.options.emulateHTTP = true
 
 Vue.config.productionTip = false
+
+Cookies.defaults = {
+  path: "/"
+}
 
 const favicon = {
   type: "image/x-icon",

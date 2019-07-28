@@ -1,60 +1,46 @@
 <template>
   <div class="container">
-    <div v-for="image of images">
-      <display-data :value="image" />
+    <div v-for="item of data">
+      <display-data :value="item" />
     </div>
-    <infinite-loading @infinite="infiniteHandler">
-      <loader
-        slot="spinner"
-        :h-center="true"
-        :v-center="firstLaunch"
-        :play-backward="true"
-      />
-      <welcome slot="no-results" />
-      <div slot="no-more">No more message</div>
-    </infinite-loading>
+    <infinite-scroll @scroll="loadMore"></infinite-scroll>
   </div>
 </template>
 
 <script>
-import Loader from "@/components/Loader.vue"
 import Welcome from "@/components/Welcome.vue"
 import DisplayData from "@/components/DisplayData.vue"
-import InfiniteLoading from "vue-infinite-loading"
-import axios from "axios"
+import InfiniteScroll from "@/components/InfiniteScroll.vue"
 
 export default {
   components: {
-    Loader,
-    InfiniteLoading,
     DisplayData,
-    Welcome
+    Welcome,
+    InfiniteScroll
   },
   data() {
     return {
-      loading: true,
-      firstLaunch: true,
       page: 1,
-      images: []
+      data: []
     }
   },
   methods: {
-    infiniteHandler(state) {
-      axios
-        .get(process.env.API_URL + "gallery/")
-        .then(({ data }) => {
-          if (data.hits && data.hits.length) {
+    loadMore(state) {
+      this.$http
+        .get(process.env.API_URL + "/gallery", { params: { page: this.page } })
+        .then(ctx => {
+          console.log(ctx.body)
+          this.data = [...this.data, ...ctx.body.images]
+          state.complete()
+          /*if (ctx.hits && body.hits.length) {
             this.page += 1
-            this.images.push(...data.hits)
+            this.images.push(...body.hits)
             state.loaded()
-          } else state.complete()
+          } else */
         })
         .catch(error => {
-          console.log(error)
+          console.error(error)
           state.complete()
-        })
-        .finally(() => {
-          if (this.firstLaunch === true) this.firstLaunch = false
         })
     }
   }

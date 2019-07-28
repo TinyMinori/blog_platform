@@ -1,6 +1,7 @@
 <template>
   <div id="image">
-    <span>zozo</span>
+    <span>{{ value.content }}</span>
+    <img :src="value.content" />
   </div>
 </template>
 

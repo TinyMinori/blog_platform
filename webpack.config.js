@@ -20,9 +20,13 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js$/, use: "babel-loader" },
-      { test: /\.vue$/, use: "vue-loader" },
-      { test: /\.css$/, use: ["vue-style-loader", "css-loader"] },
+      { test: /\.js$/, exclude: /node_modules|dist/, use: "babel-loader" },
+      { test: /\.vue$/, exclude: /node_modules|dist/, use: "vue-loader" },
+      {
+        test: /\.css$/,
+        exclude: /node_modules|dist/,
+        use: ["vue-style-loader", "css-loader"]
+      },
       {
         test: /\.(js|vue)$/,
         exclude: /node_modules|dist/,
@@ -69,6 +73,10 @@ module.exports = {
     child_process: "empty"
   },
   plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: "development",
+      API_URL: "http://localhost:3000"
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       chunksSortMode: "dependency"

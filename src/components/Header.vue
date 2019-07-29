@@ -4,7 +4,7 @@
       <div class="container">
         <div class="navbar-brand">
           <span class="navbar-item">
-            <h1 class="title">{{ title }}</h1>
+            <h1 class="title">{{ $s.title }}</h1>
           </span>
           <a
             class="navbar-item is-hidden-desktop"

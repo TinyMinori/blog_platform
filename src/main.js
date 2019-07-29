@@ -12,8 +12,6 @@ import "@/style.scss"
 Vue.prototype.$s = strings
 Vue.use(VueResource)
 
-if (!process.env.API_URL) process.env.API_URL = "http://localhost:3000"
-
 Vue.http.options.emulateJSON = true
 Vue.http.options.emulateHTTP = true
 

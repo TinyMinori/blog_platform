@@ -73,6 +73,10 @@ module.exports = {
     child_process: "empty"
   },
   plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: "development",
+      API_URL: "http://localhost:3000"
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       chunksSortMode: "dependency"

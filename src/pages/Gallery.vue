@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <div v-for="item of data">
-      <display-data :value="item" />
+    <div v-for="item of data" class="card-img">
+      <display-image :value="item" v-if="item.images.length !== 0" />
+      <display-text :value="item" v-else />
     </div>
     <infinite-scroll @scroll="loadMore"></infinite-scroll>
   </div>
@@ -9,12 +10,14 @@
 
 <script>
 import Welcome from "@/components/Welcome.vue"
-import DisplayData from "@/components/DisplayData.vue"
+import DisplayImage from "@/components/DisplayImage.vue"
+import DisplayText from "@/components/DisplayText.vue"
 import InfiniteScroll from "@/components/InfiniteScroll.vue"
 
 export default {
   components: {
-    DisplayData,
+    DisplayImage,
+    DisplayText,
     Welcome,
     InfiniteScroll
   },
@@ -29,20 +32,20 @@ export default {
       this.$http
         .get(process.env.API_URL + "/gallery", { params: { page: this.page } })
         .then(ctx => {
-          console.log(ctx.body)
-          this.data = [...this.data, ...ctx.body.images]
+          this.data = [...this.data, ...ctx.body.data]
+          this.page += 1
           state.complete()
-          /*if (ctx.hits && body.hits.length) {
-            this.page += 1
-            this.images.push(...body.hits)
-            state.loaded()
-          } else */
         })
-        .catch(error => {
-          console.error(error)
+        .catch(() => {
           state.complete()
         })
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.card-img {
+  padding: 30px;
+}
+</style>

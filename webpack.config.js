@@ -7,10 +7,11 @@ const webpack = require("webpack")
 const path = require("path")
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: "@/main.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/"
   },
   resolve: {
     alias: {
@@ -48,8 +49,15 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif|ico)$/,
-        loader: "file-loader"
+        test: /\.(png|svg|jpe?g|gif|ico)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]"
+            }
+          }
+        ]
       }
     ]
   },
@@ -78,8 +86,7 @@ module.exports = {
       API_URL: "http://localhost:3000"
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      chunksSortMode: "dependency"
+      template: "./src/index.html"
     }),
     new MiniCssExtractPlugin({
       filename: "style.css"
@@ -88,16 +95,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, "static/root"),
-        to: ".",
-        ignore: [".*"]
-      }
-    ]),
-    new CopyWebpackPlugin([
-      {
         from: path.resolve(__dirname, "static"),
-        to: "static",
-        ignore: [".*", "root/*"]
+        to: "."
       }
     ])
   ]

@@ -20,7 +20,7 @@ $link: $pink;
 // Update some of Bulma's component variables
 $body-background-color: $beige-lighter;
 $input-focus-border-color: $brown;
-$input-shadow: none;
+$input-focus-box-shadow-size: none;
 
 // Disable the widescreen breakpoint
 $widescreen-enabled: false;
@@ -57,4 +57,5 @@ $divider-thickness: .1rem;
 
 // Import only what you need from Bulma
 @import "~bulma";
+@import "~bulma-carousel/src/sass/index";
 @import "~bulma-divider";

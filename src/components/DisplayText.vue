@@ -3,9 +3,9 @@
     <div class="column is-12 has-text-centered">
       <h1 class="title">{{ value.title }}</h1>
       <h3 class="subtitle">{{ value.content }}</h3>
-      <span class="is-italic has-text-weight-light is-size-7">{{
+      <span class="is-italic has-text-weight-light is-size-7 has-text-link">{{
         moment(value.date)
-          .startOf("hour")
+          .startOf("day")
           .fromNow()
       }}</span>
     </div>
@@ -32,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.subtitle {
+  margin-bottom: 0 !important;
+}
+</style>

@@ -4,7 +4,7 @@
   "description": "This is the platform used to show the pictures of my travel",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --mode development",
+    "dev": "webpack-dev-server --env.API_URL=http://localhost:3000 --inline --progress --mode development",
     "build": "node build.js"
   },
   "author": "Mynori (https://github.com/Mynori)",

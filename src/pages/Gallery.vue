@@ -4,6 +4,21 @@
       <display-image :value="item" v-if="item.images.length !== 0" />
       <display-text :value="item" v-else />
     </div>
+    <div class="notification is-danger" v-if="error !== undefined">
+      <h1 class="title">Erreur</h1>
+      <h3 class="subtitle is-6">{{ error }}</h3>
+      <br />
+      <span class="subtitle is-5">
+        Si cette erreur se reproduit, veuillez contacter le support
+        développement à l'aide de cet e-mail :
+        <a
+          href="mailto: support@letmetravel.fr "
+          class="is-underline is-italic"
+        >
+          support@letmetravel.fr
+        </a>
+      </span>
+    </div>
     <infinite-scroll @scroll="loadMore"></infinite-scroll>
   </div>
 </template>
@@ -24,6 +39,7 @@ export default {
   data() {
     return {
       page: 1,
+      error: undefined,
       data: []
     }
   },
@@ -36,7 +52,10 @@ export default {
           this.page += 1
           state.complete()
         })
-        .catch(() => {
+        .catch(error => {
+          console.log(error)
+          if (error.ok === false)
+            this.error = "Connexion au serveur impossible."
           state.complete()
         })
     }

@@ -14,7 +14,7 @@ spinner.start()
 
 rm(path.resolve(__dirname, "./dist"), err => {
   if (err) throw err
-  webpack(webpackConfig, (err, stats) => {
+  webpack(webpackConfig(process.env), (err, stats) => {
     spinner.stop()
     if (err) throw err
     process.stdout.write(

@@ -6,7 +6,7 @@
       >
         <div class="card">
           <div class="card-content">
-            <p class="card-header-title subtitle is-3 is-centered">
+            <p class="card-header-title title is-2 is-centered">
               {{ $s.login.title }}
             </p>
             <div v-if="error" class="notification is-danger">
@@ -14,32 +14,25 @@
             </div>
             <form @submit.prevent="sendForm">
               <div class="field">
-                <label class="label">{{ $s.login.username }}</label>
+                <label class="subtitle is-6">{{ $s.login.username }}</label>
                 <div class="control">
-                  <input
-                    v-model="username"
-                    class="input is-rounded"
-                    type="text"
-                    :placeholder="$s.login.username"
-                  />
+                  <input v-model="username" class="input" type="text" />
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">{{ $s.login.password }}</label>
+                <label class="subtitle is-6">{{ $s.login.password }}</label>
                 <div class="control">
-                  <input
-                    v-model="password"
-                    class="input is-rounded"
-                    type="password"
-                    :placeholder="$s.login.password"
-                  />
+                  <input v-model="password" class="input" type="password" />
                 </div>
               </div>
 
               <div class="field is-grouped is-grouped-centered">
                 <div class="control">
-                  <button class="button is-link">
+                  <button
+                    class="button is-link"
+                    :class="{ 'is-loading': sending }"
+                  >
                     {{ $s.login.login_action }}
                   </button>
                 </div>
@@ -59,13 +52,15 @@ export default {
     return {
       username: undefined,
       password: undefined,
-      error: undefined
+      error: undefined,
+      sending: false
     }
   },
   methods: {
     sendForm() {
       this.error = undefined
       if (!this.username || !this.password) return
+      this.sending = true
       this.$http
         .post(process.env.API_URL + "/login", {
           username: this.username,
@@ -74,12 +69,14 @@ export default {
         .then(ctx => {
           if (Cookies.enabled) {
             Cookies.set("token", ctx.body.token)
-            this.$router.push({ name: "Gallery" })
+            this.$router.push({ path: "/" })
           } else
             this.error =
               "Your browser doesn't allow cookies. Enable them to connect properly."
+          this.sending = false
         })
         .catch(error => {
+          this.sending = false
           this.error = error.body.message
         })
     }

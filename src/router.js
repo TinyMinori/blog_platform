@@ -1,18 +1,20 @@
 import Vue from "vue"
-import Router from "vue-router"
+import VueRouter from "vue-router"
 
 import Gallery from "@/pages/Gallery.vue"
 import Login from "@/pages/Login.vue"
+import Logout from "@/pages/Logout.vue"
+import Card from "@/pages/Card.vue"
 import NotFound from "@/pages/404NotFound.vue"
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
   mode: "history",
+  base: "",
   routes: [
     {
       path: "/",
-      name: "Gallery",
       component: Gallery,
       meta: {
         layout: "default"
@@ -20,12 +22,21 @@ export default new Router({
     },
     {
       path: "/login",
-      name: "Login",
       component: Login
     },
     {
+      path: "/logout",
+      component: Logout
+    },
+    {
+      path: "/card/:id?",
+      component: Card,
+      meta: {
+        layout: "default"
+      }
+    },
+    {
       path: "*",
-      name: "404NotFound",
       component: NotFound
     }
   ]

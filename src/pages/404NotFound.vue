@@ -1,26 +1,20 @@
 <template>
   <div class="container">
-    <div class="columns is-centered is-hidden-touch">
-      <div class="column is-narrow">
-        <h1 class="title is-1">
-          {{ $s.notFound.code }}
-        </h1>
+    <div class="columns">
+      <div class="column">
+        <div class="multiline">
+          <div class="column">
+            <h1 class="title is-1">
+              {{ $s.notFound.code }}
+            </h1>
+          </div>
+          <div class="column">
+            <span class="subtitle is-1">{{ $s.notFound.text }}</span>
+          </div>
+        </div>
       </div>
-      <div class="column is-narrow">
-        <div class="is-divider-vertical"></div>
-      </div>
-      <div class="column is-narrow">
-        <span class="subtitle is-1">{{ $s.notFound.text }}</span>
-      </div>
-    </div>
-    <div class="is-hidden-desktop multiline">
-      <div class="column is-12">
-        <h1 class="title is-1">
-          {{ $s.notFound.code }}
-        </h1>
-      </div>
-      <div class="column is-12">
-        <span class="subtitle is-1">{{ $s.notFound.text }}</span>
+      <div class="column">
+        <img src="/images/void.svg" />
       </div>
     </div>
   </div>

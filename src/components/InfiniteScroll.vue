@@ -25,7 +25,7 @@ export default {
     setInterval(this.triggerScroll, this.timeout)
   },
   methods: {
-    completed() {
+    async completed() {
       this.loading = false
       if (this.firstLaunch) this.firstLaunch = false
     },

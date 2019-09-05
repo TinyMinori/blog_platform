@@ -11,10 +11,7 @@
       <span class="subtitle is-5">
         Si cette erreur se reproduit, veuillez contacter le support
         développement à l'aide de cet e-mail :
-        <a
-          href="mailto: support@letmetravel.fr "
-          class="is-underline is-italic"
-        >
+        <a href="mailto:support@letmetravel.fr " class="is-underline is-italic">
           support@letmetravel.fr
         </a>
       </span>
@@ -53,7 +50,6 @@ export default {
           state.complete()
         })
         .catch(error => {
-          console.log(error)
           if (error.ok === false)
             this.error = "Connexion au serveur impossible."
           state.complete()

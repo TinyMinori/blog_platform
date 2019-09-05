@@ -32,8 +32,10 @@ export default {
     triggerScroll() {
       let offsetHeight = document.documentElement.offsetHeight
       if (
-        offsetHeight !== this.totalHeight &&
-        document.documentElement.scrollTop + window.innerHeight === offsetHeight
+        (offsetHeight !== this.totalHeight &&
+          document.documentElement.scrollTop + window.innerHeight ===
+            offsetHeight) ||
+        this.totalHeight === 0
       ) {
         this.totalHeight = offsetHeight
         this.$emit("scroll", { complete: this.completed })

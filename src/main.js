@@ -48,7 +48,7 @@ var metas = [
   },
   {
     property: "og:image",
-    content: "/images/meta_image.png"
+    content: "https://letmetravel.fr/images/meta_image.png"
   },
   {
     property: "twitter:card",

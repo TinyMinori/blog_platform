@@ -1,5 +1,6 @@
 export default {
   title: "Let Me Travel",
+  description: "Blog de mes aventures au Canada",
   welcome: {
     title: "Ceci est le début de mon voyage",
     subtitle: "Je posterai prochainement mes aventures sur ce blog"

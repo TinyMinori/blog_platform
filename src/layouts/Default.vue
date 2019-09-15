@@ -20,4 +20,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.hero-body {
+  padding-top: 0 !important;
+}
+</style>

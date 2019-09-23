@@ -5,7 +5,7 @@
       <h3 class="subtitle">{{ value.content }}</h3>
       <span class="is-italic has-text-weight-light is-size-7 has-text-link">{{
         moment(value.date)
-          .startOf("day")
+          .startOf("second")
           .fromNow()
       }}</span>
     </div>

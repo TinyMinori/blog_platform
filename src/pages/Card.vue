@@ -110,7 +110,7 @@ export default {
       let formData = new FormData()
       formData.append("title", this.currentCard.title)
       formData.append("content", this.currentCard.content)
-      formData.append("order", JSON.stringify(order))
+      if (order.length > 0) formData.append("order", JSON.stringify(order))
       this.currentCard.images.forEach(item => {
         if (item.file !== undefined)
           formData.append(item._id, item.file, item._id)

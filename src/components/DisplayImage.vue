@@ -17,7 +17,7 @@
                 class="is-italic has-text-weight-light is-size-7 has-text-link"
                 >{{
                   moment(value.date)
-                    .startOf("hour")
+                    .startOf("second")
                     .fromNow()
                 }}</span
               >

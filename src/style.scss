@@ -57,5 +57,7 @@ $divider-thickness: .1rem;
 
 // Import only what you need from Bulma
 @import "~bulma";
-@import "~bulma-carousel/src/sass/index";
+//@import "~bulma-carousel/dist/css/bulma-carousel.min";
+//@import "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css";
+@import "~tiny-slider/dist/tiny-slider.css";
 @import "~bulma-divider";

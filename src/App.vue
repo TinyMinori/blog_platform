@@ -5,11 +5,16 @@
 </template>
 
 <script>
+import moment from "moment"
+
 export default {
   data() {
     return {
       default_layout: "empty"
     }
+  },
+  created() {
+    moment.locale("fr")
   },
   computed: {
     layout: function() {

@@ -1,38 +1,31 @@
 <template>
   <div class="card">
     <div class="card-image">
-      <div v-if="value.images.length !== 0">
-        <img :src="value.images[0].location" />
-      </div>
+      <div ref="images"></div>
     </div>
     <div class="card-header-title">
       <div class="columns">
         <div class="column">
-          <p>
-            {{ value.title }}
-          </p>
+          <p ref="title"></p>
           <div class="columns">
             <div class="column" id="date">
               <span
+                ref="date"
                 class="is-italic has-text-weight-light is-size-7 has-text-link"
-                >{{
-                  moment(value.date)
-                    .startOf("second")
-                    .fromNow()
-                }}</span
-              >
+              ></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <h5 class="card-content">{{ value.content }}</h5>
+    <h5 class="card-content" ref="content"></h5>
   </div>
 </template>
 
 <script>
 import moment from "moment"
-//import bulmaCarousel from "bulma-carousel/dist/js/bulma-carousel.min.js"
+//import bulmaCarousel from "bulma-carousel"
+import { tns } from "tiny-slider/src/tiny-slider"
 
 export default {
   props: {
@@ -40,7 +33,7 @@ export default {
   },
   data() {
     return {
-      //carousels: []
+      carousel: []
     }
   },
   methods: {
@@ -48,25 +41,45 @@ export default {
       return moment(...arguments)
     }
   },
-  created() {
-    moment.locale("fr")
-  },
   mounted() {
-    /*this.carousels = bulmaCarousel.attach(".carousel", {
-      breakpoints: [{ changePoint: 0, slidesToShow: 1, slidesToScroll: 1 }],
-      effect: "translate"
-    })
+    this.$refs.title.textContent = this.value.title
+    this.$refs.content.textContent = this.value.content
+    this.$refs.date.textContent = this.moment(this.value.date)
+      .startOf("second")
+      .fromNow()
 
-    for (let i = 0; i < this.carousels.length; i++) {
-      this.carousels[i].on("before:show", state => {
-        let elem = document.getElementsByClassName("item-" + state.index)
-        elem[0].classList.add("is-hidden-mobile")
+    let imagesDisplay = this.$refs.images
+    if (this.value.images.length > 1) {
+      let slider = document.createElement("div")
+      slider.classList.add("carousel")
+
+      for (let i = 0; i < this.value.images.length; i++) {
+        let container = document.createElement("div")
+        let image = document.createElement("img")
+        image.src = this.value.images[i].location
+
+        container.appendChild(image)
+        slider.appendChild(container)
+      }
+      imagesDisplay.append(slider)
+
+      this.carousels = tns({
+        container: slider,
+        autoWidth: true,
+        autoHeight: true,
+        loop: true,
+        controls: false,
+        navPosition: "bottom",
+        navAsThumbnails: true,
+        items: this.value.images.length,
+        slideBy: 1,
+        mode: "carousel"
       })
-      this.carousels[i].on("show", state => {
-        let elem = document.getElementsByClassName("item-" + state.index)
-        elem[0].classList.remove("is-hidden-mobile")
-      })
-    }*/
+    } else if (this.value.images.length === 1) {
+      let image = document.createElement("img")
+      image.src = this.value.images[0].location
+      imagesDisplay.appendChild(image)
+    }
   }
 }
 </script>
@@ -74,9 +87,11 @@ export default {
 <style lang="scss">
 .card {
   border-radius: 10px;
-  & img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  & .card-image {
+    & img {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
   }
 }
 
@@ -87,5 +102,32 @@ export default {
 .card-content {
   padding: 0.75rem !important;
   padding-top: 0 !important;
+}
+
+.carousel {
+  margin: 0;
+  height: 100%;
+  display: block !important;
+  padding: 0;
+}
+
+.tns-nav {
+  text-align: center;
+  & button {
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    height: 10px;
+    width: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &.tns-nav-active {
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  }
 }
 </style>

@@ -70,7 +70,6 @@ export default {
         loop: true,
         controls: false,
         navPosition: "bottom",
-        navAsThumbnails: true,
         items: this.value.images.length,
         slideBy: 1,
         mode: "carousel"
@@ -85,6 +84,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../style.scss";
+
 .card {
   border-radius: 10px;
   & .card-image {
@@ -102,32 +103,5 @@ export default {
 .card-content {
   padding: 0.75rem !important;
   padding-top: 0 !important;
-}
-
-.carousel {
-  margin: 0;
-  height: 100%;
-  display: block !important;
-  padding: 0;
-}
-
-.tns-nav {
-  text-align: center;
-  & button {
-    border: none;
-    border-radius: 50%;
-    padding: 0;
-    height: 10px;
-    width: 10px;
-    background-color: rgba(0, 0, 0, 0.4);
-    margin-right: 5px;
-    &:last-child {
-      margin-right: 0;
-    }
-    &.tns-nav-active {
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-      background-color: rgba(255, 255, 255, 0.8);
-    }
-  }
 }
 </style>

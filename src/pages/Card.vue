@@ -1,5 +1,17 @@
 <template>
-  <div v-else class="container">
+  <div class="container">
+    <div class="notification is-danger" v-if="error !== undefined">
+      <h1 class="title">Erreur</h1>
+      <h3 class="subtitle is-6">{{ error }}</h3>
+      <br />
+      <span class="subtitle is-5">
+        Si cette erreur se reproduit, veuillez contacter le support
+        développement à l'aide de cet e-mail :
+        <a href="mailto:support@letmetravel.fr " class="is-underline is-italic">
+          support@letmetravel.fr
+        </a>
+      </span>
+    </div>
     <form @submit.prevent="sendData">
       <div class="columns">
         <div class="column">
@@ -47,14 +59,14 @@
           </div>
         </div>
         <div class="column">
-          <div v-for="img of currentCard.images">
+          <div v-for="img of currentCard.images" :key="img">
             <img :src="img.location" />
           </div>
         </div>
       </div>
 
       <div class="control">
-        <button class="button is-primary">Submit</button>
+        <button class="button is-primary" :disabled="sending">Submit</button>
       </div>
     </form>
   </div>
@@ -70,7 +82,9 @@ export default {
         title: undefined,
         content: undefined,
         images: []
-      }
+      },
+      error: undefined,
+      sending: false
     }
   },
   async mounted() {
@@ -106,6 +120,7 @@ export default {
       this.currentId++
     },
     async sendData() {
+      this.sending = true
       let order = this.currentCard.images.map(item => item._id)
       let formData = new FormData()
       formData.append("title", this.currentCard.title)
@@ -123,7 +138,10 @@ export default {
           }
         })
         .then(() => this.$router.push("/"))
-        .catch(error => console.error(error.statusText))
+        .catch(error => {
+          this.sending = false
+          this.error = error.statusText
+        })
     }
   }
 }

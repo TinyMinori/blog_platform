@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-for="item of data" class="card-img">
+    <div v-for="item of data" class="card-img" :key="item">
       <display-image :value="item" v-if="item.images.length !== 0" />
       <display-text :value="item" v-else />
     </div>

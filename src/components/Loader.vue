@@ -32,7 +32,6 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "~bulma/sass/utilities/mixins.sass";
 @import "../style.scss";
 
 .element {
